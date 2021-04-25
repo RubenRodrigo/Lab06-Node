@@ -1,0 +1,27 @@
+{
+  "name": "lab06",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "scripts": {
+    "start": "node app.js",
+    "dev": "nodemon app.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/RubenRodrigo/Lab06-Node.git"
+  },
+  "author": "RubenRodrigo",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/RubenRodrigo/Lab06-Node/issues"
+  },
+  "homepage": "https://github.com/RubenRodrigo/Lab06-Node#readme",
+  "dependencies": {
+    "express": "^4.17.1"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.7"
+  }
+}
