@@ -25,7 +25,7 @@ const persons = [
     number: "39-23-6423122",
   },
 ];
-
+// GET
 app.get("/", (req, res) => {
   res.send("Hello World");
 });
@@ -43,6 +43,17 @@ app.get("/api/persons", (req, res) => {
 app.get("/api/persons/:id", (req, res) => {
   const person = persons.find(
     (person) => person.id === parseInt(req.params.id)
+  );
+  if (!person) {
+    res.status(404).send(error);
+  }
+  res.send(person);
+});
+
+// DELETE
+app.delete("/api/persons/:id", (req, res) => {
+  const person = persons.filter(
+    (person) => person.id != parseInt(req.params.id)
   );
   if (!person) {
     res.status(404).send(error);
