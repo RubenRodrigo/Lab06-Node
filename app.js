@@ -51,6 +51,18 @@ app.get("/api/persons/:id", (req, res) => {
 
 // POST
 app.post("/api/persons", (req, res) => {
+  const data = req.body;
+  if (!data.name) {
+    res.status(400).send({ error: "name is required" });
+  } else if (!data.number) {
+    res.status(400).send({ error: "number is required" });
+  }
+
+  const person = persons.find((person) => person.name === data.name);
+  if (person) {
+    res.status(400).send({ error: "name must be unique" });
+  }
+
   const newPerson = {
     id: Math.round(Math.random() * 10000),
     name: req.body.name,
