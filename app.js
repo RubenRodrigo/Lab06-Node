@@ -1,4 +1,6 @@
-const express = require("express");
+import express from "express";
+import { persons } from "./persons.js";
+
 const app = express();
 const port = 3000;
 const error = "Error 404. This page does not exist";
@@ -6,24 +8,6 @@ const error = "Error 404. This page does not exist";
 // Necesitamos esto para poder leer JSON
 app.use(express.json());
 
-const persons = [
-  { id: 1, name: "Arto Hellias", number: "040-123456" },
-  {
-    id: 2,
-    name: "Ada Lovelace",
-    number: "39-44-5323523",
-  },
-  {
-    id: 3,
-    name: "Dan Abramov",
-    number: "12-43-234345",
-  },
-  {
-    id: 4,
-    name: "Mary Poppendick",
-    number: "39-23-6423122",
-  },
-];
 // GET
 app.get("/", (req, res) => {
   res.send("Hello World");
