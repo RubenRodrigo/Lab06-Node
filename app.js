@@ -1,6 +1,7 @@
 const express = require("express");
 const app = express();
 const port = 3000;
+const error = "Error 404. This page does not exist";
 
 const persons = [
   {
@@ -37,6 +38,20 @@ app.get("/info", (req, res) => {
 
 app.get("/api/persons", (req, res) => {
   res.send(persons);
+});
+
+app.get("/api/persons/:id", (req, res) => {
+  const person = persons.find(
+    (person) => person.id === parseInt(req.params.id)
+  );
+  if (!person) {
+    res.status(404).send(error);
+  }
+  res.send(person);
+});
+
+app.get("*", (req, res) => {
+  res.status(404).send(error);
 });
 
 app.listen(port, () =>
