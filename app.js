@@ -3,12 +3,11 @@ const app = express();
 const port = 3000;
 const error = "Error 404. This page does not exist";
 
+// Necesitamos esto para poder leer JSON
+app.use(express.json());
+
 const persons = [
-  {
-    id: 1,
-    name: "Arto Hellias",
-    number: "040-123456",
-  },
+  { id: 1, name: "Arto Hellias", number: "040-123456" },
   {
     id: 2,
     name: "Ada Lovelace",
@@ -50,14 +49,27 @@ app.get("/api/persons/:id", (req, res) => {
   res.send(person);
 });
 
+// POST
+app.post("/api/persons", (req, res) => {
+  const newPerson = {
+    id: Math.round(Math.random() * 10000),
+    name: req.body.name,
+    number: req.body.number,
+  };
+  persons.push(newPerson);
+  res.send(newPerson);
+});
+
 // DELETE
 app.delete("/api/persons/:id", (req, res) => {
-  const person = persons.filter(
-    (person) => person.id != parseInt(req.params.id)
+  const person = persons.find(
+    (person) => person.id === parseInt(req.params.id)
   );
   if (!person) {
     res.status(404).send(error);
   }
+  const index = persons.indexOf(person);
+  persons.splice(index, 1);
   res.send(person);
 });
 
