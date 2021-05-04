@@ -2,7 +2,7 @@ import express from 'express';
 import { persons } from './persons.js';
 
 const app = express();
-const port = 3000;
+const port = 5000;
 const error = 'Error 404. This page does not exist';
 
 // Necesitamos esto para poder leer JSON
@@ -77,4 +77,4 @@ app.use((req, res, next) => {
   res.status(404).send('Sorry cant find that!');
 });
 
-app.listen(port, () => console.log(`Example app listening at http://localhost:${port}`));
+app.listen(process.env.PORT || port, () => console.log(`Example app listening at http://localhost:${port}`));
